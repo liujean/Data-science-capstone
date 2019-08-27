@@ -4,37 +4,6 @@ Created on Fri Aug 23 00:44:01 2019
 
 @author: jean2
 """
-
-# =============================================================================
-# Web Scraping Wikipedia Tables using BeautifulSoup and Python
-# =============================================================================
-
-from bs4 import beautifulsoup4
-import requests
-import pandas as pd
-
-
-# assign the link of the website to scrape the data
-website_url = requests.get('https://en.wikipedia.org/wiki/List_of_Asian_countries_by_area').text
-
-soup = BeautifulSoup (website_url,'lxml')
-print(soup.prettify())
-
-# all table contents are under class "wikitable sortable"
-My_table = soup.find('table',{'class':'wikitable sortable'})
-links = My_table.findAll('a')
-links
-
-Countries = []
-for link in links:
-    Countries.append(link.get('title'))
-print(Countries)
-
-df = pd.DataFrame()
-df['Country'] = Countries
-df
-
-
 # =============================================================================
 # K Means: segmenting neighborhoods in Toronto
 # =============================================================================
